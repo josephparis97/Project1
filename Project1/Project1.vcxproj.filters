@@ -21,9 +21,15 @@
     <ClCompile Include="Vector3d.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Bmpfile.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bmpfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,6 +11,7 @@ class Vector3d
 		Vector3d multiply(Vector3d v2);
 		Vector3d operator+(Vector3d v2);
 
+
 		friend ostream& operator << (ostream& out, const Vector3d& c);
 		friend istream& operator >> (istream& in, Vector3d& c);
 	
