@@ -11,7 +11,7 @@ DirectionalLight::~DirectionalLight()
 {
 }
 
-Vector3 DirectionalLight::GetDirection(Vector3 point) const
+Vector3 DirectionalLight::GetDirection() const
 {
 	return direction;
 }

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Scene::Scene() : objects(std::vector<std::unique_ptr<Object3d>>()), eye(Vector3(0, 0, -20))
+Scene::Scene() : objects(std::vector<std::unique_ptr<Object3d>>()), eye(Vector3(0, 0, 10))
 {
 }
 
@@ -32,8 +32,8 @@ void Scene::RayTrace(std::string filename, unsigned int width, unsigned int heig
 		{
 			{
 				int idx = (x + y * width) * 3;
-				Vector3 pixel((float)x - (float)width/2.f, (float)y - (float)height/2.f, 0);
-				pixel = pixel.multiply(0.05f);
+				Vector3 pixel(((float)x - (float)width/2.f)/width, ((float)y - (float)height/2.f)/height, 0);
+				
 				Ray ray(eye, pixel - eye);
 				// cout << ray.GetDirection().norm() << endl;
 				unsigned char b, g, r;
@@ -101,3 +101,29 @@ bool Scene::castRay(Ray ray, unsigned char& blue, unsigned char& green, unsigned
 	blue = color.GetBlueAsuchar();
 	return true;
 }
+
+Colorf Scene::illumination(Ray ray)
+{
+	Colorf illumination_color;
+	bool hit = false;
+	Vector3 interPoint;
+	for (size_t i = 0; i < objects.size(); i++)
+	{
+		for (size_t j = 0; i < lights.size(); j++)
+		{
+			if (objects[i]->Intersect(ray, interPoint))
+			{
+				hit = true;
+				//k*i*n.l
+				Vector3 n = objects[i]->GetNormal(interPoint);
+				Vector3 l = lights[j]->GetDirection();
+				illumination_color = objects[i]->GetColor* n.multiply(l);
+			}
+		}
+		
+	}
+
+	return illumination_color;
+}
+
+

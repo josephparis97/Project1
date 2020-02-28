@@ -14,6 +14,7 @@ public:
 	void addObject(std::unique_ptr<Object3d> obj);
 	void addLight(std::unique_ptr<Light> light);
 	bool castRay(Ray ray, unsigned char& blue, unsigned char& green, unsigned char& red);
+	Colorf illumination(Ray ray);
 
 	Vector3 eye;
 	std::vector<std::unique_ptr<Object3d>> objects;

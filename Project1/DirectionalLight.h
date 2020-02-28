@@ -7,7 +7,7 @@ class DirectionalLight :
 public:
 	DirectionalLight(Vector3 direction, Colorf color);
 	~DirectionalLight();
-	Vector3 GetDirection(Vector3 point) const override;
+	Vector3 GetDirection() const override;
 	Colorf GetColor() const override;
 private:
 	Vector3 direction;
