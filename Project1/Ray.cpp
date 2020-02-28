@@ -1,9 +1,23 @@
+#include "stdafx.h"
 #include "Ray.h"
 
-Ray::Ray(Vector3d origin, Vector3d direction) 
-	:origin(origin), direction(direction){}
 
-Vector3d Ray::getOrigin()
+Ray::Ray(Vector3 start, Vector3 dir):
+	start(start), dir(dir.normalize())
 {
-	return origin;
+}
+
+
+Ray::~Ray()
+{
+}
+
+Vector3 Ray::GetDirection() const
+{
+	return dir;
+}
+
+Vector3 Ray::GetStart() const
+{
+	return start;
 }

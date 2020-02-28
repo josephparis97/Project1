@@ -1,21 +1,14 @@
+#pragma once
 #include "Ray.h"
-#include "Vector3d.h"
-class Object3D
+#include "Color.h"
+
+class Object3d
 {
-protected:
-	Vector3d center;
-	Vector3d color;
-
 public:
-	Object3D(Vector3d center_p, Vector3d color_p );
-	~Object3D();
-	 float getIntersectionDistance(Ray incidentRay) = 0;
+	Object3d();
+	~Object3d();
+	virtual bool Intersect(Ray r, Vector3& intersection) const = 0;
+	virtual Vector3 GetNormal(Vector3 point) const = 0;
+	virtual Colorf GetColor(Vector3 point) const = 0;
 };
 
-class Sphere : public Object3D {
-private:
-	float R;
-public:
-	Sphere(Vector3d center_p, float R_p, Vector3d color_p = Vector3d(0, 0, 255));
-	float getIntersectionDistance(Ray incidentRay);
-};
